@@ -1,8 +1,15 @@
 # SelfPlaying_Piano
 ESP32-C3 + PCA9685 64-key Robotic Piano
+![5ccb1ed6ac01a7d63d5d7801fed45832](https://github.com/user-attachments/assets/ae4c540f-a16c-498a-9d48-5f8408f17500)
+
 ## Intro
   This project is the final project of ESAP (Engineering Summer At Penn) 2025 Robotics. It is created by Team Piano 1 (Brad Cao, Thomas Wang, Kelvin Dong). Instructed by Professor Yim, Professor Pat, and Professor Nick. Also thanks alot to the help from TA Zimu Yang and Kayleen Smith.
 ## Product Demo
+Part of Chopin: Fantasy Impromptu
+
+
+https://github.com/user-attachments/assets/c90b3a9c-bd58-40a1-a728-f804e2af175a
+
 
 ## Features
   - ESP32‑C3 + PCA9685 control for 64 servo actuators (one per piano key).
@@ -31,6 +38,26 @@ ESP32-C3 + PCA9685 64-key Robotic Piano
    - UDP port: `2808`.
    - Bad keys list (if used): `BAD_KEYS[]`.
 4. Flash and open Serial Monitor at 115200 baud.
-5. you can play the songs manully by first switching the song by typing  **m <song number-1>** and **S** to start playing
+
+## How to control by sending UDP packs
+1. Package sender and device connects to your 2.4GHz Wifi and listens on port 2808
+2. If the received udp package contains any of the trigger words, it plays the assigned song after 1s of delay
+3. It is set as one-shot(first trigger only, skips the song if one has already played) but you can adjust it in the codes
+
+## How to control manually
+1. you can play the songs manully by first switching the song by typing  **m (song number-1)** and **S** to start playing
+  ### Serial command reference (runtime control)
+  Send the commends on the serial monitor
+  1. **S** Restarts the current song from beginning immediately
+  2. **P** Pause/Reseme
+  3. **B (tempo)** set tempoPercent(range from 30%-400%)
+  4. **V (velocity)** set velocityPercent(range from 0%-100%)
+  5. **L** prints current event index, paused state, tempo, velocity, and time
+  6. **T (midi)** Test a single note
+  7. **M (song number -1)** Switch to song and play
+  8. **MX (song number -1)** Switch to song and pause
+  9.  
+
+
 
 
