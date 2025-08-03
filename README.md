@@ -3,7 +3,8 @@ ESP32-C3 + PCA9685 64-key Robotic Piano
 ![5ccb1ed6ac01a7d63d5d7801fed45832](https://github.com/user-attachments/assets/ae4c540f-a16c-498a-9d48-5f8408f17500)
 
 ## Intro
-  This project is the final project of ESAP (Engineering Summer At Penn) 2025 Robotics. It is created by Team Piano 1 (Brad Cao, Thomas Wang, Kelvin Dong). Instructed by Professor Yim, Professor Pat, and Professor Nick. Also thanks alot to the help from TA Zimu Yang and Kayleen Smith.
+ This project is the final project of the 2025 ESAP (Engineering Summer at Penn) Robotics program. It was created by Team Piano 1: Brad Cao, Thomas Wang, and Kelvin Dong. We were instructed by Professors Yim, Pat, and Nick. Special thanks to TAs Zimu Yang and Kayleen Smith for their invaluable support.
+ 
 ## Product Demo
 Part of Chopin: Fantasy Impromptu
 
@@ -43,19 +44,19 @@ https://github.com/user-attachments/assets/c90b3a9c-bd58-40a1-a728-f804e2af175a
 
 ## Build & Flash (Arduino IDE)
 1. Install **ESP32(by espressif)** , select **ESP32C3** board.  
-2. Libraries: `Wire`, `Arduino`, `WiFi`, `WiFiUdp`.  
-3. Open `final.ino` and edit:
-   - Wi‑Fi: `WIFI_SSID` / `WIFI_PASS` and trigger keyword
-   - UDP port: `2808`.
-   - `USE_STATIC_IP` is 1 (static) 0 (DHCP)
-   - Bad keys list (if used): `BAD_KEYS[]`.
+2. Libraries: **Wire**, **Arduino**, **WiFi**, **WiFiUdp**.  
+3. Open **final.ino** and edit:
+   - Wi‑Fi: **WIFI_SSID** / **WIFI_PASS** and trigger keyword
+   - UDP port: **2808**.
+   - **USE_STATIC_IP** is 1 (static) 0 (DHCP)
+   - Bad keys list (if used): **BAD_KEYS[]**.
 4. Flash and open Serial Monitor at 115200 baud.
 
 ## How to control by sending UDP packs
 1. Package sender and device connects to your 2.4GHz Wifi and listens on port 2808
 2. If the received udp package contains any of the trigger words, it plays the assigned song after 1s of delay
 3. It is set as one-shot(first trigger only, skips the song if one has already played) but you can adjust it in the codes
-4. Keywords: `song_TRIG` = **S** **B** **D** **V** **T** **91** **69**
+4. Keywords: **song_TRIG** = **S** **B** **D** **V** **T** **91** **69**
 
 ## How to control manually
 1. you can play the songs manully by first switching the song by typing  **m (song number-1)** and **S** to start playing
@@ -77,6 +78,15 @@ https://github.com/user-attachments/assets/c90b3a9c-bd58-40a1-a728-f804e2af175a
   14. **O (midi)(delta)** adjust the perkey press offset for one key
   15. **W** Print all non zero perkey calibrations
   16. **R** Clear all perkey calibrations
+
+## Music Score Conversion Rules
+**NoteEvent {startMs, durMs, midi, vel}**
+1. startMs: absolute start time from song start, in milliseconds
+2. durMs: note length in milliseconds
+3. midi: MIDI note number (integers)
+4. vel: velocity (0–100); kept for future use (the current piano doesn’t support it) 
+
+
 
 
 
